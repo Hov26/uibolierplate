@@ -4,7 +4,7 @@ This README would normally document whatever steps are necessary to get your app
 
 ### What is this repository for? ###
 
-* This is repository Gulp4 repository for front-end htmls/css/js development
+* This is Gulp4 repository for front-end html/css/js development
 
 ### How do I get set up? ###
  
