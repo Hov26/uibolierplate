@@ -8,6 +8,7 @@ const cleancss = require('gulp-clean-css');
 const imagemin = require('gulp-imagemin');
 const newer = require('gulp-newer');
 const del = require('del');
+const nodemon = require('gulp-nodemon');
 
 function browsersync() {
     browserSync.init({
@@ -65,6 +66,30 @@ function startWatch() {
     watch('app/images/src/**/*', images)
 }
 
+function server(cb) {
+    var callbackCalled = false;
+    return nodemon({
+        script: './server.js'
+    }).on('start', function() {
+        if (!callbackCalled) {
+            callbackCalled = true;
+            cb();
+        }
+    });
+}
+
+// gulp.task('nodemon', function(cb) {
+//     var callbackCalled = false;
+//     return nodemon({
+//         script: './server.js'
+//     }).on('start', function() {
+//         if (!callbackCalled) {
+//             callbackCalled = true;
+//             cb();
+//         }
+//     });
+// });
+
 exports.browsersync = browsersync;
 exports.scripts = scripts;
 exports.compileSass = compileSass;
@@ -72,4 +97,4 @@ exports.images = images;
 exports.cleanImg = cleanImg;
 exports.build = series(cleanBuild, compileSass, scripts, images, buildCopy);
 
-exports.default = parallel(scripts, compileSass, browsersync, startWatch);
+exports.default = parallel(scripts, compileSass, server, browsersync, startWatch);
