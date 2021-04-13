@@ -17,6 +17,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-imagemin": "^7.1.0",
     "gulp-newer": "^1.4.0",
+    "gulp-purgecss": "^4.0.3",
     "gulp-sass": "^4.1.0",
     "gulp-uglify-es": "^2.0.0"
   }
