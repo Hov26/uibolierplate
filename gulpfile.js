@@ -24,7 +24,7 @@ function scripts() {
 }
 
 function compileSass() {
-    return src('app/sass/main.sass')
+    return src('app/sass/main.scss')
         .pipe(sass())
         .pipe(concat('app.min.css'))
         .pipe(autoprefixer({ overrideBrowserslist: ['last 10 versions'], grid: true }))
@@ -59,7 +59,7 @@ function buildCopy() {
 }
 
 function startWatch() {
-    watch(['app/**/*.sass'], compileSass)
+    watch(['app/**/*.scss'], compileSass)
     watch(['app/**/*.js', '!app/**/*.min.js'], scripts)
     watch('app/**/*.html').on('change', browserSync.reload)
     watch('app/images/src/**/*', images)
